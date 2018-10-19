@@ -10,18 +10,16 @@ import injectReducer from '../../utils/injectReducer';
 
 import { changeUser } from './action';
 
+import HeaderLayout from '../../components/Header';
 
-import { Layout } from 'antd';
-const { Content } = Layout;
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const { SubMenu } = Menu;
+const { Content, Sider } = Layout;
 
-export class HomePage extends React.PureComponent {
+export class ContactPage extends React.PureComponent {
     render() {
         return (
-            <Layout style={{ padding: '24px' }}>
-            <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                  Content
-            </Content>
-        </Layout>
+                <div>This contact Page</div>
         )
     }
 }
@@ -36,6 +34,6 @@ export function mapDispatchToProps(dispatch) {
     };
 }
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'contact', reducer });
 
-export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(HomePage)
+export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(ContactPage)

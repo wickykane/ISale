@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 export class FooterLayout extends React.Component {
     render() {
         const Footer = styled.div`
-            line-height: 50px;
+            line-height: 25px;
             background-color: #111;
             color: #fff;
         `;
 
         return ( 
           <Footer>
-              <div className="text-center">Power by wickykane</div>
+              <div className="text-right p-1">Power by wickykane</div>
           </Footer>
         );
     }

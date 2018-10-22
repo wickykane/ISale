@@ -14,12 +14,12 @@ import { changeUser } from './action';
 import { Layout } from 'antd';
 const { Content } = Layout;
 
-export class HomePage extends React.PureComponent {
+export class PrescriptionPage extends React.PureComponent {
     render() {
         return (
             <Layout>
             <Content style={{ background: '#fff', padding: 10, margin: 0, minHeight: 280 }}>
-                  Content
+                  This is prescription
             </Content>
         </Layout>
         )
@@ -36,6 +36,6 @@ export function mapDispatchToProps(dispatch) {
     };
 }
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'prescription', reducer });
 
-export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(HomePage)
+export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(PrescriptionPage)

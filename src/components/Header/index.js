@@ -4,14 +4,16 @@ import './header.css';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUser } from '../../containers/Home/selector';
 import { connect } from 'react-redux';
-
+import {Link} from 'react-router-dom'
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 const { Header } = Layout;
 
 export class HeaderLayout extends React.Component {
     render() {
         const StyledHeader = styled(Header)`
-        background-color: #fff;
+        background-color: #1194ff7d;
+        line-height: 55px;
+        height: 55px;
         .logo {
             display: inline-block;
         }
@@ -22,30 +24,22 @@ export class HeaderLayout extends React.Component {
         .anticon {
             font-size: 20px !important;
             svg {
-                margin-top: -12px !important;
+                margin-top: -15px !important;
             }
         }
         `;
         const menu = (
             <Menu>
                 <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+                    <a href="#">My Profile</a>
                 </Menu.Item>
                 <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
-                </Menu.Item>
-                <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3rd menu item</a>
+                    <a href="#">Logout</a>
                 </Menu.Item>
             </Menu>
         );
         return ( 
             <StyledHeader> 
-                <div className="logo">
-                    <a href="#">
-                        <img alt="logo" src="assets/images/logo.png" height="50"/>                    
-                    </a>
-                </div>
                 <div className="menu-header">
                     <Dropdown trigger={['click']} overlay={menu} placement="bottomCenter">
                         <Avatar  size="large" icon="user" />

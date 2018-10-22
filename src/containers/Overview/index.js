@@ -16,10 +16,10 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
-export class ContactPage extends React.PureComponent {
+export class OverviewPage extends React.PureComponent {
     render() {
         return (
-                <div>This contact Page</div>
+                <div>This Overview Page</div>
         )
     }
 }
@@ -34,6 +34,6 @@ export function mapDispatchToProps(dispatch) {
     };
 }
 
-const withReducer = injectReducer({ key: 'contact', reducer });
+const withReducer = injectReducer({ key: 'overview', reducer });
 
-export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(ContactPage)
+export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(OverviewPage)

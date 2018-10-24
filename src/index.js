@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from "./containers/MainLayout/loadable";
+import RouteConfig from "./route";
 import * as serviceWorker from './serviceWorker';
 import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
@@ -14,7 +14,7 @@ const store = createStore({}, history);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+           <RouteConfig/>
         </ConnectedRouter>
     </Provider>
     , document.getElementById('root'));

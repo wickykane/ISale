@@ -11,7 +11,7 @@ const { Header } = Layout;
 export class HeaderLayout extends React.Component {
     render() {
         const StyledHeader = styled(Header)`
-        background-color: #1194ff7d;
+        background-color: #ffffff7d;
         line-height: 55px;
         height: 55px;
         .logo {

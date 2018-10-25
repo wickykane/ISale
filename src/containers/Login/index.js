@@ -8,7 +8,8 @@ import { compose } from 'redux';
 import reducer from './reducer';
 import injectReducer from '../../utils/injectReducer';
 
-import { changeUser } from './action';
+// Action Import
+import { login, formDataChange } from './action';
 
 import styled from 'styled-components';
 
@@ -40,7 +41,7 @@ const LoginContent = styled(Content)`
             margin-bottom: 30px;
         }
 
-        width: 300px;
+        width: 350px;
         margin: 0 auto;
     }
 `;
@@ -53,16 +54,16 @@ export class LoginPage extends React.PureComponent {
                     <form className="login-form">
                         <h1 className="login-title">LOG - IN</h1>
                         <div className="mb-2">
-                            <Input className="email" placeholder="Email" addonBefore={  (<Icon type="user" theme="outlined" />)} />
+                            <Input name="email" onChange={this.props.onFormChange} value={this.props.user.email} className="email" placeholder="Email" addonBefore={  (<Icon type="user" theme="outlined" />)} />
                         </div>
                         <div className="mb-2">
-                            <Input type="password" className="password" placeholder="Password" addonBefore={ (<Icon type="lock" theme="outlined" />)} />
+                            <Input name="password" onChange={this.props.onFormChange} value={this.props.user.password} type="password" className="password" placeholder="Password" addonBefore={ (<Icon type="lock" theme="outlined" />)} />
                         </div>
                         <div className="text-center mb-4">
                             <a style={{color: '#ccc'}} href="#">Forget Password?</a>
                         </div>
                         <div className="text-center">
-                           <Button style={{color: '#fff', backgroundColor: '#4CD493', width: '100%', borderColor: '#4CD493'}} type="primary">Continue</Button>
+                           <Button onClick={ this.props.onLogin } style={{color: '#fff', backgroundColor: '#4CD493', width: '100%', borderColor: '#4CD493'}} type="primary">Continue</Button>
                         </div>
                     </form>
                 </LoginContent>
@@ -77,10 +78,11 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onUserChange: (e) => dispatch(changeUser(e.target.value)),
+        onLogin: () =>  dispatch(login()),
+        onFormChange: (e) => dispatch(formDataChange(e)),
     };
 }
 
-const withReducer = injectReducer({ key: 'home', reducer });
+const withReducer = injectReducer({ key: 'login', reducer });
 
 export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(LoginPage)

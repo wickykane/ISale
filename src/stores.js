@@ -3,10 +3,11 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { fromJS } from 'immutable';
 import initReducer from './reducers';
+import thunk from 'redux-thunk';
 
 const sagaMiddleware = createSagaMiddleware();
 export default function initStore(initialState, history) {
-    const middlewares = [sagaMiddleware, routerMiddleware(history)];
+    const middlewares = [thunk, sagaMiddleware, routerMiddleware(history)];
     const enhancers = [applyMiddleware(...middlewares)];
 
     const composeEnhancers = (process.env.NODE_ENV !== 'production') && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?

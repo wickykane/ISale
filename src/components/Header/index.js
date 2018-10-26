@@ -1,39 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
-import './header.css';
-import { createStructuredSelector } from 'reselect';
-import { makeSelectUser } from '../../containers/Home/selector';
+
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
+import { push } from 'react-router-redux';
+
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 const { Header } = Layout;
 
+const StyledHeader = styled(Header)`
+background-color: #00B0D9;
+line-height: 55px;
+height: 55px;
+.logo {
+    display: inline-block;
+}
+.menu-header {
+    display: inline-block;
+    float: right;
+}
+.anticon {
+    font-size: 20px !important;
+    svg {
+        margin-top: -15px !important;
+    }
+}
+`;
+
 export class HeaderLayout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.logOut = this.logOut.bind(this);
+    }
+
+    logOut() {
+        localStorage.removeItem('app_token');
+        this.props.dispatch(push('/login'));
+    }
+
+      
     render() {
-        const StyledHeader = styled(Header)`
-        background-color: #ffffff7d;
-        line-height: 55px;
-        height: 55px;
-        .logo {
-            display: inline-block;
-        }
-        .menu-header {
-            display: inline-block;
-            float: right;
-        }
-        .anticon {
-            font-size: 20px !important;
-            svg {
-                margin-top: -15px !important;
-            }
-        }
-        `;
         const menu = (
-            <Menu>
-                <Menu.Item>
+            <Menu onClick={this.handleMenuClick}>
+                <Menu.Item key="profile">
                     <a href="#">My Profile</a>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item  onClick={ () => this.logOut() } key="logout">
                     <a href="#">Logout</a>
                 </Menu.Item>
             </Menu>
@@ -50,8 +62,5 @@ export class HeaderLayout extends React.Component {
     }
 }
 
-export default connect(
-    createStructuredSelector({
-        user: makeSelectUser(),
-    }),
-)(HeaderLayout);
+
+export default connect()(HeaderLayout);

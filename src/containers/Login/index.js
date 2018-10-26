@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectUser } from './selector';
+import { makeSelectUser, makeSelectStatus } from './selector';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -10,11 +10,14 @@ import injectReducer from '../../utils/injectReducer';
 
 // Action Import
 import { login, formDataChange } from './action';
+import { reset } from '../../status';
 
 import styled from 'styled-components';
 
+// Layout Import
+import { Layout , Input, Icon, Button, notification  } from 'antd';
+import LoadingIndicator from '../../components/LoadingIndicator/index';
 
-import { Layout , Input, Icon, Button } from 'antd';
 const { Content } = Layout;
 
 const LoginContent = styled(Content)`
@@ -47,8 +50,18 @@ const LoginContent = styled(Content)`
 `;
 
 export class LoginPage extends React.PureComponent {
+    componentDidUpdate() {
+        const { success, error, pending} =  this.props.status;
+        if(error) {
+            notification.error({ message: 'Error', description: error});
+            this.props.onResetStatus();
+        }
+    }
+
     render() {
-        return (
+        const { pending} =  this.props.status;
+        return (pending)? (<LoadingIndicator></LoadingIndicator>) :
+        (
             <Layout>
                 <LoginContent>
                     <form className="login-form">
@@ -74,11 +87,13 @@ export class LoginPage extends React.PureComponent {
 
 const mapStateToProps = createStructuredSelector({
     user: makeSelectUser(),
+    status: makeSelectStatus(),
 })
 
 export function mapDispatchToProps(dispatch) {
     return {
         onLogin: () =>  dispatch(login()),
+        onResetStatus: () => dispatch(reset()),
         onFormChange: (e) => dispatch(formDataChange(e)),
     };
 }

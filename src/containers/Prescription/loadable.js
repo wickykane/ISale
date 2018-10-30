@@ -1,12 +1,5 @@
-// import Loadable from 'react-loadable';
-// import LoadingIndicator from '../../components/LoadingIndicator/index'
-// export default Loadable({
-//     loader: () => import('./index'),
-//     loading: () => LoadingIndicator,
-// })
-
 /**
- * Asynchronously loads the component for HomePage
+ * Asynchronously loads the component
  */
 import loadable from 'loadable-components';
 import LoadingIndicator from '../../components/LoadingIndicator'

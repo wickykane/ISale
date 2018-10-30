@@ -5,7 +5,6 @@ export const API_RESET = 'API_RESET';
 
 
 export function pending() {
-    console.log(1);
     return {
         type: API_PENDING,
     }

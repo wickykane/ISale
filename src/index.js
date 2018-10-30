@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import './index.css';
+
 import RouteConfig from "./route";
 import * as serviceWorker from './serviceWorker';
 import createHistory from 'history/createBrowserHistory';

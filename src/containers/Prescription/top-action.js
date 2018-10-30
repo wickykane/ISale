@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     padding: 15px 30px;
     background-color: #fff;
     display: flex;
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid #f4f4f4;
     .block-action {
         flex: 0 0 1; 
         margin-right: 50px;

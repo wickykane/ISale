@@ -18,6 +18,7 @@ const WrapperTabPane = styled(Tabs)`
     }
     .ant-tabs-nav-wrap {
         margin-bottom: 0px;
+        background-color: #fdfdfd;
     }
     .ant-tabs-nav .ant-tabs-tab {
         padding: 20px 50px;

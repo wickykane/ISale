@@ -21,3 +21,67 @@ a {
 a:hover, a:active, a:focus {
   text-decoration: none;
 }
+
+
+/* Scroll */
+.fixed-table-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  padding-top: 40px;
+  color: #7F969F;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+  transition: all 0.5s  ease-in-out;
+}
+
+.fixed-table-container thead th {
+  border: none;
+  padding: 0 10px;
+}
+
+.fixed-table-container tbody td {
+  border: 1px solid #f4f4f4 !important;
+  background-color: #fff;
+  line-height: 40px;
+  padding: 0px 10px;
+}
+
+.fixed-table-container tbody tr:hover td {
+  background-color: #f2fbfe;
+}
+.fixed-table-container .th-inner {
+  position: absolute;
+  top: 0;
+  line-height: 40px;
+  text-align: left;
+  padding-left: 10px;
+  margin-left: -10px;
+  border-left: 1px solid #f4f4f4;
+  font-weight: normal;
+}
+
+.fixed-table-container  .header-table {
+  background-color: #fff;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: calc(100% - 14px);
+  border-left: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+
+}
+
+.fixed-table-container .body-table {
+  padding-right: 15px;
+}
+
+.fixed-table-container table tbody tr:first-child td {
+  border-top: none !important;
+}
+.scrollbar-container {
+  position: initial;
+}

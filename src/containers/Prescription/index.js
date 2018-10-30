@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
-import { makeSelectUser } from './selector';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+// Selector
+import { createStructuredSelector } from 'reselect';
+import { makeSelectPageData } from './selector';
+
+// Reducer
 import reducer from './reducer';
 import injectReducer from '../../utils/injectReducer';
 
-import { changeUser } from './action';
-
-
-import { Layout, Input, Button  } from 'antd';
+// Action
+import { fnListPrescription } from './action';
 
 // Component
+import { Layout, Input, Button  } from 'antd';
 import FilterWrap from '../../components/FilterWrap'
 import ActionTop from './top-action';
 import TablePrescription from './table';
@@ -22,24 +24,27 @@ import TablePrescription from './table';
 const { Content } = Layout;
 
 export class PrescriptionPage extends React.PureComponent {
+    componentWillMount() {
+        this.props.getListPrescription();
+    }
 
     render() {
         return (
             <Layout>
-                <ActionTop></ActionTop>       
-                <TablePrescription></TablePrescription>
+                <ActionTop  {...this.props}></ActionTop>       
+                <TablePrescription  {...this.props}></TablePrescription>
             </Layout>
         )
     }
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: makeSelectUser(),
+    page: makeSelectPageData(),
 })
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onUserChange: (e) => dispatch(changeUser(e.target.value)),
+        getListPrescription: () => dispatch(fnListPrescription()),
     };
 }
 

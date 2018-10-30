@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const user = state => state.get('home', initialState);
-const makeSelectUser = () => createSelector(user, state => state.get('user'));
-export { makeSelectUser }
+const prescription = state => state.get('prescription', initialState);
+const makeSelectPageData = () => createSelector(prescription, state => state.get('page_data'));
+export { makeSelectPageData }

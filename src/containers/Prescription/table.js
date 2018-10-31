@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon, Checkbox , Input , Pagination, Drawer  } from 'antd';
+import { Form, Button, Icon, Checkbox , Input , InputNumber, Pagination, Drawer } from 'antd';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const Wrapper = styled.div`
@@ -49,15 +49,17 @@ padding: 10px;
 `;
 
 export default class TablePrescription extends React.PureComponent {
-    componentWillUpdate() {
-        console.log(this.props);
+    selectRow = (e, index) => {
+            this.props.page.list[index].checked = e.target.checked;
+            this.props.actionPageData('list', this.props.page.list);
     }
+
     render() {
         const rows = (this.props.page.list || []).map((item, index) => {
             return (
                 <tr key={'row-'+ index}>
                     <td className="text-center" style={{ width: '50px'}}>
-                        <Checkbox checked={item.checked}></Checkbox>
+                        <Checkbox onChange={ (e) => this.selectRow(e, index) } checked={item.checked}></Checkbox>
                     </td>
                     <td>{ item.id }</td>
                     <td>{ item.code }}</td>
@@ -127,16 +129,7 @@ export default class TablePrescription extends React.PureComponent {
                         <Pagination defaultCurrent={1} total={50} />
                     </div>
                </div>
-               <CreateDrawer {...this.props}></CreateDrawer>
            </Wrapper>
         );
     }
-}
-
-const CreateDrawer = (props) => {
-    return (
-        <Drawer title="Create">
-            this is customer
-        </Drawer>
-    );
 }

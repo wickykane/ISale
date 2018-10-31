@@ -21,14 +21,28 @@ const Wrapper = styled.div`
 `;
 
 export default class ActionTop extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.addCustomer = this.addCustomer.bind(this);
+        this.addPrescription = this.addPrescription.bind(this);
+    }
+
+    addPrescription() {
+        this.props.actionPageData('current', 'prescription');
+    }
+
+    addCustomer() {
+        this.props.actionPageData('current', 'customer');
+    }
+
     render() {
         return (
            <Wrapper>
-                <div className="block-action">
+                <div onClick={ this.addPrescription } className="block-action">
                     <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="file-add" theme="outlined" />
                     <p className="text-uppercase">Add Prescription</p>
                 </div>
-                <div className="block-action">
+                <div onClick={ this.addCustomer } className="block-action">
                     <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="user-add" theme="outlined" />
                     <p className="text-uppercase">Add Customer</p>
                 </div>

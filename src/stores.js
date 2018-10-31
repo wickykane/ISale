@@ -4,10 +4,12 @@ import createSagaMiddleware from 'redux-saga';
 import { fromJS } from 'immutable';
 import initReducer from './reducers';
 import thunk from 'redux-thunk';
+// Logger with default options
+import logger from 'redux-logger'
 
 const sagaMiddleware = createSagaMiddleware();
 export default function initStore(initialState, history) {
-    const middlewares = [thunk, sagaMiddleware, routerMiddleware(history)];
+    const middlewares = [thunk, sagaMiddleware, routerMiddleware(history), logger];
     const enhancers = [applyMiddleware(...middlewares)];
 
     const composeEnhancers = (process.env.NODE_ENV !== 'production') && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?

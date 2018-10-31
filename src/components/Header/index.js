@@ -43,10 +43,10 @@ export class HeaderLayout extends React.Component {
         const menu = (
             <Menu onClick={this.handleMenuClick}>
                 <Menu.Item key="profile">
-                    <a href="#">My Profile</a>
+                    My Profile
                 </Menu.Item>
                 <Menu.Item  onClick={ () => this.logOut() } key="logout">
-                    <a href="#">Logout</a>
+                    Logout
                 </Menu.Item>
             </Menu>
         );

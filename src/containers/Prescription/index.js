@@ -12,16 +12,15 @@ import reducer from './reducer';
 import injectReducer from '../../utils/injectReducer';
 
 // Action
-import { fnListPrescription } from './action';
+import { fnListPrescription, actionPageData } from './action';
 
 // Component
-import { Layout, Input, Button  } from 'antd';
-import FilterWrap from '../../components/FilterWrap'
+import { Layout } from 'antd';
 import ActionTop from './top-action';
 import TablePrescription from './table';
+import CusomerCreateComponent from './customer.create';
+import PrescriptionCreateComponent from './prescription.create';
 
-
-const { Content } = Layout;
 
 export class PrescriptionPage extends React.PureComponent {
     componentWillMount() {
@@ -33,6 +32,8 @@ export class PrescriptionPage extends React.PureComponent {
             <Layout>
                 <ActionTop  {...this.props}></ActionTop>       
                 <TablePrescription  {...this.props}></TablePrescription>
+                <CusomerCreateComponent {...this.props}></CusomerCreateComponent>
+                <PrescriptionCreateComponent {...this.props}></PrescriptionCreateComponent>
             </Layout>
         )
     }
@@ -45,6 +46,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
     return {
         getListPrescription: () => dispatch(fnListPrescription()),
+        actionPageData: (key, data) => dispatch(actionPageData(key, data)),
     };
 }
 

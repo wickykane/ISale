@@ -1,5 +1,10 @@
-import Loadable from 'react-loadable';
-export default Loadable({
-    loader: () => import('./index'),
-    loading: () => null,
-})
+/**
+ * Asynchronously loads the component
+ */
+import loadable from 'loadable-components';
+import LoadingIndicator from '../../components/LoadingIndicator'
+
+
+export default loadable(() => import('./index'), {
+  LoadingComponent: LoadingIndicator,
+});

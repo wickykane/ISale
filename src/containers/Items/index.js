@@ -17,12 +17,12 @@ import { fnListPrescription, actionPageData } from './action';
 // Component
 import { Layout } from 'antd';
 import ActionTop from './top-action';
-import TablePrescription from './table';
+import TableItems from './table';
 import CusomerCreateComponent from './customer.create';
-import PrescriptionCreateComponent from './prescription.create';
+import ItemsCreateComponent from './items.create';
 
 
-export class PrescriptionPage extends React.PureComponent {
+export class ItemsPage extends React.PureComponent {
     componentWillMount() {
         this.props.getListPrescription();
     }
@@ -31,9 +31,9 @@ export class PrescriptionPage extends React.PureComponent {
         return (
             <Layout>
                 <ActionTop  {...this.props}></ActionTop>       
-                <TablePrescription  {...this.props}></TablePrescription>
+                <TableItems  {...this.props}></TableItems>
                 <CusomerCreateComponent {...this.props}></CusomerCreateComponent>
-                <PrescriptionCreateComponent {...this.props}></PrescriptionCreateComponent>
+                <ItemsCreateComponent {...this.props}></ItemsCreateComponent>
             </Layout>
         )
     }
@@ -52,4 +52,4 @@ export function mapDispatchToProps(dispatch) {
 
 const withReducer = injectReducer({ key: 'prescription', reducer });
 
-export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(PrescriptionPage)
+export default compose(withReducer, connect(mapStateToProps, mapDispatchToProps))(ItemsPage)

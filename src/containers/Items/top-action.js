@@ -39,12 +39,12 @@ export default class ActionTop extends React.PureComponent {
         return (
            <Wrapper>
                 <div onClick={ this.addPrescription } className="block-action">
-                    <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="file-add" theme="outlined" />
-                    <p className="text-uppercase">Add Prescription</p>
+                    <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="tags" theme="outlined" />
+                    <p className="text-uppercase">Thiết lập giá</p>
                 </div>
                 <div onClick={ this.addCustomer } className="block-action">
-                    <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="user-add" theme="outlined" />
-                    <p className="text-uppercase">Add Customer</p>
+                    <Icon style={{ fontSize: '30px', marginBottom: '10px'}} type="check-square" theme="outlined" />
+                    <p className="text-uppercase">Kiểm kho</p>
                 </div>
            </Wrapper>
         );

@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Button, Icon, Checkbox , Input , InputNumber, Pagination, Drawer } from 'antd';
+import { Form, Button, Icon, Checkbox , Input , InputNumber, Pagination, Drawer, Menu, Dropdown } from 'antd';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const Wrapper = styled.div`
 background-color: #fdfdfd;
 padding: 10px;
+.list-inline-item {
+    .anticon {
+        font-size: 14px !important;
+    }
+}
  .action-search {
     padding: 10px 50px;
     background-color: #fff;
@@ -48,10 +53,14 @@ padding: 10px;
  }
 `;
 
-export default class TablePrescription extends React.PureComponent {
+export default class TableItems extends React.PureComponent {
     selectRow = (e, index) => {
             this.props.page.list[index].checked = e.target.checked;
             this.props.actionPageData('list', this.props.page.list);
+    }
+
+    onClickAddItems = (e) => {
+        this.props.actionPageData('current', e.key);
     }
 
     render() {
@@ -67,10 +76,27 @@ export default class TablePrescription extends React.PureComponent {
                 </tr>
             );
         })
+
+        const addItemMenu = (
+                <Menu onClick={(e) => this.onClickAddItems(e)}>
+                <Menu.Item key="items">Thêm hàng hóa</Menu.Item>
+                <Menu.Item key="service">Thêm dịch vụ</Menu.Item>
+                <Menu.Item key="combo">Thêm combo - đóng gói</Menu.Item>
+                </Menu>
+        );
+          
         return (
            <Wrapper>
                <div className="action-group">
                     <ul className="list-inline">
+                        <li className="list-inline-item">
+                            <Dropdown overlay={addItemMenu}>
+                                <a className="ant-dropdown-link" href="#">
+                                <Icon type="plus"/>
+                                <span className='text-uppercase'>Thêm mới </span>
+                                </a>
+                            </Dropdown>
+                        </li>
                         <li className="list-inline-item">
                             <Icon type="eye" theme="outlined" />
                             <span className="text-uppercase">View</span>

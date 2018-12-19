@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderLayout from '../../components/Header';
 import OverviewPage from '../Overview/loadable';
-import PrescriptionPage from '../Prescription/loadable';
+import ItemsPage from '../Items/loadable';
 import styled from 'styled-components';
 import { parse } from 'query-string';
 import { Layout, Tabs} from 'antd';
@@ -42,11 +42,11 @@ const App = (props) => {
             <HeaderLayout></HeaderLayout>          
             <Content style={ {background: '#fff'}}>
                 <WrapperTabPane defaultActiveKey={ current || '1'}>
-                    <TabPane tab="Overview" key="1">
+                    <TabPane tab="Tổng Quan" key="1">
                         <OverviewPage></OverviewPage>
                     </TabPane>
-                    <TabPane tab="Prescription" key="2">
-                        <PrescriptionPage></PrescriptionPage>
+                    <TabPane tab="Hàng Hóa" key="2">
+                        <ItemsPage></ItemsPage>
                     </TabPane>
                 </WrapperTabPane>
             </Content>

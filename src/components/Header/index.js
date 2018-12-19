@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { push } from 'react-router-redux';
 
-import { Layout, Menu, Avatar, Dropdown } from 'antd';
-const { Header } = Layout;
+// Component
+import { Layout, Menu, Avatar, Dropdown, Icon } from 'antd';
+import WrapInline from '../WrapInline';
 
+const { Header } = Layout;
 const StyledHeader = styled(Header)`
 background-color: #00B0D9;
 line-height: 55px;
@@ -43,13 +45,20 @@ export class HeaderLayout extends React.Component {
         const menu = (
             <Menu onClick={this.handleMenuClick}>
                 <Menu.Item key="profile">
-                    My Profile
+                   <WrapInline>
+                        <Icon type="idcard" /> 
+                        <span>Trang cá nhân</span>
+                   </WrapInline>
                 </Menu.Item>
                 <Menu.Item  onClick={ () => this.logOut() } key="logout">
-                    Logout
+                    <WrapInline>
+                        <Icon type="logout" />
+                        <span>Đăng xuất</span>
+                    </WrapInline>
                 </Menu.Item>
             </Menu>
         );
+        
         return ( 
             <StyledHeader> 
                 <div className="menu-header">

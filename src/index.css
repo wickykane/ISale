@@ -15,9 +15,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 a {
   color: inherit;
 }
+
+.ant-form-item-label {
+  text-align: left !important;
+}
+
 a:hover, a:active, a:focus {
   text-decoration: none;
 }

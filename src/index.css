@@ -24,6 +24,10 @@ a {
   text-align: left !important;
 }
 
+.ant-input-number {
+  width: 100% !important;
+}
+
 a:hover, a:active, a:focus {
   text-decoration: none;
 }

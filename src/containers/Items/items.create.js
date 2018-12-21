@@ -1,7 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import debounce from "lodash/debounce";
-import moment from "moment";
 import {
   Form,
   Button,
@@ -10,7 +7,6 @@ import {
   Row,
   Col,
   AutoComplete,
-  DatePicker,
   Upload,
   Modal,
   Icon,
@@ -25,15 +21,31 @@ const TabPane = Tabs.TabPane;
 const Option = Select.Option;
 
 class CreateDrawer extends React.PureComponent {
+  /**
+   * INIT STATE DATA
+   */
+
   constructor(props) {
     super(props);
     this.state = {
-      previewVisible: false,
-      previewImage: false,
       fileList: [],
-      reviewList: []
+      reviewList: [],
+      attributes: []
     };
   }
+
+  /**
+   * DRAWER HANDLING
+   */
+
+  closeDrawer = () => {
+    this.props.form.resetFields();
+    this.props.actionPageData("current", null);
+  };
+
+  /**
+   * FORM DATA AND VALIDATION
+   */
 
   onSubmit = e => {
     e.preventDefault();
@@ -44,16 +56,13 @@ class CreateDrawer extends React.PureComponent {
     });
   };
 
-  closeDrawer = () => {
-    this.props.form.resetFields();
-    this.props.actionPageData("current", null);
-  };
-
   hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
   }
 
-  // Image Handle
+  /**
+   * UPLOAD IMAGE HANDLING
+   */
 
   getBase64(img, callback) {
     const reader = new FileReader();
@@ -92,6 +101,35 @@ class CreateDrawer extends React.PureComponent {
       });
     }
   };
+
+  /**
+   * ATTRIBUE HANDLING
+   */
+
+  addAttribute = () => {
+    let attributes = [...this.state.attributes];
+    attributes.push({});
+    this.setState({
+      ...this.state,
+      attributes
+    });
+  };
+
+  removeAtribute = index => {
+    console.log(this.props.form.getFieldsValue());
+
+    let attributes = [...this.props.form.getFieldsValue().attributes];
+    attributes.splice(index, 1);
+
+    this.setState({
+      ...this.state,
+      attributes
+    });
+  };
+
+  /**
+   * RENDER HTML HANDLING
+   */
 
   render() {
     const { getFieldDecorator, getFieldsError } = this.props.form;
@@ -187,7 +225,7 @@ class CreateDrawer extends React.PureComponent {
               </Col>
               <Col md={24}>
                 <FormItem {...formItemLayout} label="Tồn kho">
-                  {getFieldDecorator("sale_price", { initialValue: 0 })(
+                  {getFieldDecorator("avaiable_qty", { initialValue: 0 })(
                     <InputNumber min={0} />
                   )}
                 </FormItem>
@@ -236,8 +274,56 @@ class CreateDrawer extends React.PureComponent {
           </Col>
           <Col md={24}>
             <Collapse defaultActiveKey={["1"]}>
-              <Collapse.Panel header="This is panel header 1" key="1">
-                    this is text
+              <Collapse.Panel header="Theo dõi thuộc tính" key="1">
+                {this.state.attributes.length > 0 ? (
+                  <table className="table-value">
+                    <thead>
+                      <tr>
+                        <th>Thuộc tính</th>
+                        <th>Giá trị</th>
+                        <th />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      { this.state.attributes.map((item, index) => (
+                        <tr key={index}>
+                          <td>
+                            <Select defaultValue="lucy" style={{ width: 200 }}>
+                              <Select.OptGroup label="Chọn thuộc tính ...">
+                                <Option value="jack">Jack</Option>
+                                <Option value="lucy">Lucy</Option>
+                              </Select.OptGroup>
+                              <Option value="Yiminghe">
+                                Tạo thuộc tính mới
+                              </Option>
+                            </Select>
+                          </td>
+                          <td>
+                            <FormItem>
+                              {getFieldDecorator("attributes["+ index + "].value", {
+                              })(
+                                <Input placeholder="Nhập giá trị và enter" />
+                              )}
+                            </FormItem>
+                          </td>
+                          <td>
+                            <a
+                              onClick={() => this.removeAtribute(index)}
+                              href="javascrip:void(0)"
+                            >
+                              <Icon type="close" />
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  ""
+                )}
+                <Button onClick={this.addAttribute} icon="plus">
+                  Thêm thuộc tính
+                </Button>
               </Collapse.Panel>
             </Collapse>
           </Col>
@@ -256,6 +342,10 @@ class CreateDrawer extends React.PureComponent {
         </FormItem>
       </Form>
     );
+
+    /**
+     * Main render
+     */
 
     return (
       <Drawer

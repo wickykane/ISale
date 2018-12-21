@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   background-color: #fdfdfd;
   padding: 10px;
-
+  
   .list-inline-item {
     .anticon {
       font-size: 14px !important;

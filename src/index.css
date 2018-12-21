@@ -28,6 +28,19 @@ a {
   width: 100% !important;
 }
 
+.anticon {
+  vertical-align: inherit !important;
+}
+
+.table-value .ant-form-item {
+  margin-bottom: inherit !important;
+  vertical-align: middle !important;
+}
+
+.table-value th, .table-value td {
+  padding: 5px 15px;
+} 
+
 a:hover, a:active, a:focus {
   text-decoration: none;
 }

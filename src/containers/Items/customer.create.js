@@ -1,12 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Form, Button, Input, Drawer } from 'antd';
 
 const FormItem = Form.Item;
+
 class  CreateDrawer extends React.PureComponent {
     constructor(props) {
         super(props);
     }
+
+    /**
+     * DRAWER FUNCTION HANDLING
+     */
+
+    closeDrawer = () => {
+        this.props.form.resetFields();
+        this.props.actionPageData('current', null);
+    }
+
+    /**
+     * FORM DATA AND FUNCTION HANDLING 
+     */
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -17,15 +30,16 @@ class  CreateDrawer extends React.PureComponent {
         });
     }
 
-    closeDrawer = () => {
-        this.props.form.resetFields();
-        this.props.actionPageData('current', null);
-    }
-
+   
     hasErrors(fieldsError) {
         return Object.keys(fieldsError).some(field => fieldsError[field]);
     }
-      
+    
+    
+    /**
+     * RENDER HTML HANDLING
+     */
+
      render() {
         const { getFieldDecorator, getFieldsError } =this. props.form;
         return (

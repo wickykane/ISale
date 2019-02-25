@@ -108,3 +108,7 @@ a:hover, a:active, a:focus {
 .scrollbar-container {
   position: initial;
 }
+
+.item-editor {
+  height: 300px !important;
+}
